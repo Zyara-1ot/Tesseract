@@ -58,12 +58,12 @@ Standard `malloc` and `new` are general purpose. They don't know:
 
 ## Size Classes
 ```
-Class 1  →  1  -  64  bytes   (small tensors, scalars)
-Class 2  →  65 -  256 bytes   (small vectors)
-Class 3  →  257 - 4096 bytes  (medium tensors)
-Class 4  →  4KB - 256KB       (typical weight matrices)
-Class 5  →  256KB - 1MB       (large feature maps)
-Class 6  →  1MB - 16MB        (very large tensors)
+Class 1  ~  1  -  64  bytes   (small tensors, scalars)
+Class 2  ~  65 -  256 bytes   (small vectors)
+Class 3  ~  257 - 4096 bytes  (medium tensors)
+Class 4  ~  4KB - 256KB       (typical weight matrices)
+Class 5  ~  256KB - 1MB       (large feature maps)
+Class 6  ~  1MB - 16MB        (very large tensors)
 ```
 
 ---
@@ -93,8 +93,8 @@ Class 6  →  1MB - 16MB        (very large tensors)
 
 | Allocator | Time | Throughput | Speedup |
 |-----------|------|-----------|---------|
-| TESSERACT | 44.85ms | 178.3M req/sec | 1.0x |
-| malloc | 184.86ms | 43.3M req/sec | 4.12x slower |
+| TESSERACT | 44.85ms | 178.3M req/sec | 4.12x faster |
+| malloc | 184.86ms | 43.3M req/sec | 1.0x  |
 
 
 ---
