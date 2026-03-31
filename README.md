@@ -9,11 +9,10 @@ Normal allocators don't know your cache exists. TESSERACT does.
 ## Why
 
 Standard `malloc` and `new` are general purpose. They don't know:
-- my cache line is 64 bytes
-- my L3 boundary is at 8MB  
-- False sharing between threads costs 3.5x throughput
-- TLB pressure kills performance beyond 4MB working set
-
+TESSERACT optimizes for:
+* Cache line alignment (64-byte blocks)
+* False sharing avoidance (thread-local freelists)
+* TLB efficiency (pre-allocated arena reduces allocator TLB misses)
 ---
 
 ## What it does
