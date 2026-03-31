@@ -89,7 +89,22 @@ Class 6  →  1MB - 16MB        (very large tensors)
 
 **Results:** tesseract beats malloc 3.68x on micro-benchmarks and 3.89x on realistic web server load. Outperforms both tcmalloc and jemalloc.
 
+### Multi-threaded: 8 Threads, 8M Requests
+
+| Allocator | Time | Throughput | Speedup |
+|-----------|------|-----------|---------|
+| TESSERACT | 44.85ms | 178.3M req/sec | 1.0x |
+| malloc | 184.86ms | 43.3M req/sec | 4.12x slower |
+
+
 ---
 
+
 ## Build
+```bash
+git clone https://github.com/Zyara-1ot/tesseract.git
+cd tesseract
+
+g++ -O3 -march=native -pthread -o benchmark benchmark/bench_tessmt.cpp src/arena.cpp src/free_list.cpp src/central_pool.cpp src/tesseract.cpp -I include/
+```
 
