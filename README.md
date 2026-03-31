@@ -22,7 +22,7 @@ TESSERACT optimizes for:
 - **Thread-local caches** ~ zero lock contention on the hot path
 - **Arena-based** ~ one `mmap` at startup, no OS calls during allocation
 - **Tensor-aware** ~ size classes tuned for common tensor shapes
-- **NUMA-aware** ~ allocates on the node closest to the calling thread
+- **NUMA-aware** ~ allocates on the node closest to the calling thread (will add later)
 
 ---
 
