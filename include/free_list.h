@@ -1,22 +1,30 @@
 #ifndef FREE_LIST_H
 #define FREE_LIST_H
-
 #include <cstddef>
 
-struct freeblock{
-  freeblock* next;  //ptr to next block ,,, if user even overwrites it ,, issok, we just need it once,,
-};
-
-class freelist{
-private:
-freeblock* head;    //pts to 1st free block,, 
-
+class freelist {
 public:
-  freelist();
-  void push(void* ptr );    //freed block to front, 
-  void* pop();          //take block from front, return it,,,
-  bool is_empty();     //we just need true of false 
+    struct freeblock {
+        freeblock* next;
+    };
+    freeblock* head;
+    freelist();
+    __attribute__((always_inline)) inline void push(void* ptr) {
+        freeblock* newblock = (freeblock*)ptr;
+        newblock->next = head;
+        head = newblock;
+    }
+    __attribute__((always_inline)) inline void* pop() {
+        if (__builtin_expect(!head, 0)) { // expect the !head to be false,,,hint to cpu  --- 99% time crct guess ,,, fast overall 
+            return nullptr;
+        }
+        freeblock* curr = head;
+        head = head->next;
+        return (void*)curr;
+    }
+    __attribute__((always_inline)) inline bool is_empty() const {
+        return head == nullptr;
+    }
 };
-
 
 #endif
