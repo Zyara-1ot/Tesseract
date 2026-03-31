@@ -11,7 +11,10 @@ private:
 public:
     arena();
     __attribute__((always_inline)) inline void* allocate(size_t size) { //--no func call overhead at all,,code gets pasted directly in the call site ,,
-        size_t aligned = ((size + 63) / 64) * 64; // roundoff to 64 byte ,,, 
+    if (offset + size > total_size) {
+            return nullptr; 
+         }
+    size_t aligned = ((size + 63) / 64) * 64; // roundoff to 64 byte ,,, 
         void* ptr = start + offset; // aligned with cache line
         offset += aligned; //e evry allocation starts at cache line boundary ,, 
         return ptr;

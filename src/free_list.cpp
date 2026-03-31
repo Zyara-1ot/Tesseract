@@ -3,6 +3,6 @@
 #include <iostream>
 #include <cstddef>
 
-freelist::freelist(){     // constr sets had to null 
+freelist::freelist(){     
   head = nullptr;
 };

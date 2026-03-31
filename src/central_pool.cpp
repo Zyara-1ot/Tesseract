@@ -4,7 +4,6 @@
 #include <mutex>
 
 central_pool::central_pool(){
-
 };
 
 void* central_pool::allocate(int class_idx){
