@@ -33,19 +33,19 @@ TESSERACT optimizes for:
 │   allocate(size) / free(ptr, size)  │
 └──────────────┬──────────────────────┘
                │
-┌──────────────▼──────────────────────┐
+┌────────────────────────────────────┐
 │      Thread Local Cache             │
 │   Per-thread free lists             │
 │   Zero contention, zero sharing     │
 └──────────────┬──────────────────────┘
                │ empty/full
-┌──────────────▼──────────────────────┐
+┌────────────────────────────────────┐
 │      Central Pool                   │
 │   Segregated free lists             │
 │   One mutex per size class          │
 └──────────────┬──────────────────────┘
                │ needs more memory
-┌──────────────▼──────────────────────┐
+┌────────────────────────────────────┐
 │      Arena                          │
 │   mmap'd 1GB at startup             │
 │   Bump pointer allocation           │
